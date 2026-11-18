@@ -1,0 +1,24 @@
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local task data
+tasks.json
+tasks_backup.json
+
+# Editor and operating system files
+.idea/
+.DS_Store
+Thumbs.db

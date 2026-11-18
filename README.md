@@ -1,134 +1,231 @@
-# 📌 Task Tracker CLI
 
-A clean, lightweight, and fully functional command‑line task manager built in Python.
-This tool lets you add, list, complete, and delete tasks — all stored locally in a JSON file.
-Designed with clarity, modularity, and professional development practices in mind.
+# Task Tracker CLI
 
-## ✨ Features
+A Python command-line task management application that supports task creation, editing, completion, deletion, priorities, and due-date tracking.
 
-• Add new tasks
-• List all tasks, pending tasks, or completed tasks
-• Mark tasks as complete
-• Delete tasks
-• Persistent incremental task IDs
-• Automatic timestamps (, )
-• Color‑coded, polished CLI output
-• JSON‑based storage (no database required)
-• Fully modular architecture
-• Optional testing suite using
-• Auto‑formatted with Black + isort + flake8
+Tasks are stored locally in JSON, making the application lightweight and easy to run without a database.
 
-## 📁 Project Structure
+## Features
 
-task-tracker-cli/
+- Create tasks with descriptions and optional priorities.
+- Assign due dates using `YYYY-MM-DD` format.
+- View all tasks or filter by status, priority, and overdue status.
+- Edit task descriptions, priorities, and due dates.
+- Clear existing due dates.
+- Mark tasks as completed.
+- Record creation and completion timestamps.
+- Delete tasks by ID.
+- Automatically assign incremental task IDs.
+- Validate user input and handle invalid commands.
+- Persist task data locally in JSON.
+- Run automated tests with pytest.
+
+## Technology Stack
+
+- Python 3.12+
+- JSON for local data persistence
+- argparse for command-line argument handling
+- pytest for automated testing
+- Black for code formatting
+- isort for import organization
+- Flake8 for linting
+
+## Project Structure
+
+```text
+Task-Tracker-CLI/
 │
-├── main.py # CLI interface
-├── task_manager.py # Core task logic
-├── tasks.json # Local data storage
-├── README.md # Project documentation
-├── requirements.txt # Development tools
+├── main.py
+├── task_manager.py
+├── requirements.txt
+├── .gitignore
+├── .flake8
+├── README.md
+│
 └── tests/
-└── test_task_manager.py
+    ├── test_cli.py
+    └── test_task_manager.py
+```
 
-## 🖥️ Installation
+The application creates `tasks.json` locally when task data is saved. This file is excluded from version control so personal task records are not published.
 
-- Clone the repository
-    - git clone <your-repo-url>
-    - cd task-tracker-cli
-- Create a virtual environment
-    - python -m venv .venv
-- Activate the environment
-    - Windows:
-        - .venv\Scripts\activate
-    - Mac/Linux:
-        - source .venv/bin/activate
-- Install dependencies
-    - pip install -r requirements.txt
+## Installation
 
-## 🚀 Usage
+### 1. Clone the repository
 
-Run the CLI using:
-python main.py <command> [arguments]
+```bash
+git clone <your-repository-url>
+cd Task-Tracker-CLI
+```
 
-Add a task
-python main.py add "Buy groceries"
+### 2. Create a virtual environment
 
-List all tasks
+```bash
+python -m venv .venv
+```
+
+### 3. Activate the virtual environment
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Linux / macOS / WSL:
+
+```bash
+source .venv/bin/activate
+```
+
+### 4. Install development dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+Run commands from the project directory.
+
+### Add a task
+
+```bash
+python main.py add "Study Python"
+```
+
+Add a task with priority and due date:
+
+```bash
+python main.py add "Complete project" --priority high --due 2026-12-01
+```
+
+### List tasks
+
+```bash
 python main.py list
+```
 
-List only pending tasks
+Filter by status:
+
+```bash
 python main.py list pending
-
-List only completed tasks
 python main.py list completed
+```
 
-Mark a task as complete
+Filter overdue tasks:
+
+```bash
+python main.py list overdue
+```
+
+Filter by priority:
+
+```bash
+python main.py list high
+python main.py list medium
+python main.py list low
+```
+
+### Complete a task
+
+```bash
 python main.py complete 1
+```
 
-Delete a task
+### Edit a task
+
+Change its description:
+
+```bash
+python main.py edit 1 --description "Study Python fundamentals"
+```
+
+Change its priority:
+
+```bash
+python main.py edit 1 --priority high
+```
+
+Change its due date:
+
+```bash
+python main.py edit 1 --due 2026-12-15
+```
+
+Remove its due date:
+
+```bash
+python main.py edit 1 --clear-due
+```
+
+### Delete a task
+
+```bash
 python main.py delete 1
+```
 
-## 📦 Task Data Structure
+## Task Data
 
-Each task is stored in tasks.json as:
+Each task is stored as a JSON object with fields for:
 
-{
-"id": 1,
-"description": "Buy groceries",
-"completed": false,
-"created_at": "2026-02-12T16:45:00",
-"completed_at": null
-}
+- `id`: Unique task identifier.
+- `description`: Task description.
+- `completed`: Completion status.
+- `priority`: Task priority.
+- `due_date`: Optional due date.
+- `created_at`: Task creation timestamp.
+- `completed_at`: Completion timestamp, when applicable.
 
-## 🧪 Running Tests
+The JSON file is stored locally and is not included in the public repository.
 
-This project includes a minimal pytest suite.
+## Testing
 
-Run all tests:
-pytest
+The project includes automated tests for task management and command-line functionality.
 
-Example test file:
+Run the complete test suite:
 
-- tests/
-    - test_task_manager.py
+```bash
+python -m pytest -v
+```
 
-## 🛠️ Development Tools
+The tests cover:
 
-This project uses professional Python tooling:
+- Task creation and deletion.
+- Task editing and due-date updates.
+- Priority and date validation.
+- Completion timestamps.
+- Task filtering.
+- Invalid CLI arguments.
+- Overdue task behavior.
+- JSON storage error handling.
 
-- Black – auto‑formatter
-- isort – import sorter
-- flake8 – linter
-- pytest – testing framework
+## Code Quality
 
-Install them with:
+Format the project:
 
-- pip install black isort flake8 pytest
+```bash
+black .
+```
 
-Format code manually:
+Organize imports:
 
-- black .
-- isort .
-- flake8 .
+```bash
+isort .
+```
 
-## 📸 Screenshots
+Run lint checks:
 
-/screenshots/
+```bash
+python -m flake8 .
+```
 
-- list.png
-- add.png
-- complete.png
+## Development Notes
 
-## 📜 License
+This project uses Python's standard library for its application functionality. External packages are used for testing and development quality checks.
+
+Task data is stored locally in JSON, and automated tests use temporary storage to avoid modifying personal task records.
+
+## License
 
 MIT License
-
-## 🙌 Author
-
-Okoye Hughes
-Task Tracker CLI — 2026
-
-
-
-    
-
