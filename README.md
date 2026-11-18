@@ -220,6 +220,45 @@ Run lint checks:
 python -m flake8 .
 ```
 
+
+## Project Screenshots
+
+The following screenshots demonstrate the Task Tracker CLI's main features and automated testing.
+
+### Task Management
+
+**Task List**
+
+![Task List](screenshots/task%20list.png)
+
+**Adding a Task**
+
+![Adding a Task](screenshots/add%20task.png)
+
+**Editing a Task**
+
+![Editing a Task](screenshots/edit%20task.png)
+
+**Completing a Task**
+
+![Completing a Task](screenshots/complete%20task.png)
+
+### Task Filtering
+
+**Overdue Tasks**
+
+![Overdue Tasks](screenshots/overdue%20task.png)
+
+**High-Priority Tasks**
+
+![High Priority Tasks](screenshots/high%20priority%20tasks.png)
+
+### Automated Testing
+
+**Test Results**
+
+![Test Results](screenshots/test%20results.png)
+
 ## Development Notes
 
 This project uses Python's standard library for its application functionality. External packages are used for testing and development quality checks.
